@@ -2,11 +2,10 @@ from setuptools import setup
 
 
 setup(name='esgetfamily',
-      version='0.1',
+      version='0.2',
       description='Fetch Parent and Child documents in Elasticsearch',
       classifiers=[
-          'Programming Language :: Python :: 2.7',
-          'Topic :: ES Parent Child',
+          'Programming Language :: Python :: 2.7'
       ],
       url='https://github.com/plotlabs/esgetfamily-python.git',
       keywords=["elasticsearch", "elastic-search",
@@ -16,9 +15,10 @@ setup(name='esgetfamily',
                 "elasticsearch parent child"],
       author='Nayan Jain',
       author_email='nayanjain1994@gmail.com',
-      license='MIT',
+      license='LICENSE.txt',
       packages=['esgetfamily'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=['elasticsearch>=5.0.0,<6.0.0'])
+      install_requires=['elasticsearch']
+      )
 

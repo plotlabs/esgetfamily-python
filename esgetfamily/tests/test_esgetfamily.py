@@ -1,4 +1,5 @@
 import unittest
+from esgetfamily.main import parent_child
 
 
 class TestRequirements(unittest.TestCase):
@@ -60,11 +61,9 @@ class Test01SingleParent(unittest.TestCase):
         self.es_db.index(index=self.parent_index, doc_type=self.child_type,
                          body={u"id": 2, u"name": 'Child2'}, id=2, parent=1)
 
-        import esgetfamily
         self.parents = self.es_db.get(index=self.parent_index,
                                       doc_type=self.parent_type, id=1)
-        self.result = esgetfamily.parent_child(self.es_db, self.parents,
-                                               self.child_type)
+        self.result = parent_child(self.es_db, self.parents, self.child_type)
 
     def test01_keys(self):
         for r in self.result:
@@ -89,14 +88,12 @@ class Test01SingleParent(unittest.TestCase):
             self.assertFalse("Test Failed")
 
     def test03_query(self):
-        import esgetfamily
         query = {
             "match": {
                 "id": 1
             }
         }
-        result = esgetfamily.parent_child(self.es_db, self.parents,
-                                          self.child_type, query)
+        result = parent_child(self.es_db, self.parents, self.child_type, query)
         for r in self.result:
             number_of_children = len(result[r]['child'])
 
@@ -174,13 +171,11 @@ class Test02MultipleParent(unittest.TestCase):
         self.es_db.index(index=self.parent_index, doc_type=self.child_type,
                          body={u"id": 2, u"name": 'Child2'}, id=2, parent=2)
 
-        import esgetfamily
         self.parents = [self.es_db.get(index=self.parent_index,
                                        doc_type=self.parent_type, id=1),
                         self.es_db.get(index=self.parent_index,
                                        doc_type=self.parent_type, id=2)]
-        self.result = esgetfamily.parent_child(self.es_db, self.parents,
-                                               self.child_type)
+        self.result = parent_child(self.es_db, self.parents, self.child_type)
 
     def test01_keys(self):
         for r in self.result:
@@ -205,15 +200,13 @@ class Test02MultipleParent(unittest.TestCase):
             self.assertFalse("Test Failed")
 
     def test03_query(self):
-        import esgetfamily
         number_of_children = 0
         query = {
             "match": {
                 "id": 1
             }
         }
-        result = esgetfamily.parent_child(self.es_db, self.parents,
-                                          self.child_type, query)
+        result = parent_child(self.es_db, self.parents, self.child_type, query)
         for r in self.result:
             number_of_children += len(result[r]['child'])
 
