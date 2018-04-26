@@ -4,4 +4,8 @@ python:
 install:
   - pip install -r esgetfamily/requirements.txt
 # command to run tests
+services:
+  - elasticsearch
+before_script:
+  - sleep 15
 script: python esgetfamily/tests/test_esgetfamily.py
