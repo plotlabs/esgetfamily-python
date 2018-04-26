@@ -1,5 +1,7 @@
 import unittest
-from esgetfamily.main import parent_child
+import sys
+sys.path.insert(0, 'esgetfamily')
+import main
 
 
 class TestRequirements(unittest.TestCase):
@@ -63,7 +65,8 @@ class Test01SingleParent(unittest.TestCase):
 
         self.parents = self.es_db.get(index=self.parent_index,
                                       doc_type=self.parent_type, id=1)
-        self.result = parent_child(self.es_db, self.parents, self.child_type)
+        self.result = main.parent_child(self.es_db, self.parents,
+                                      self.child_type)
 
     def test01_keys(self):
         for r in self.result:
@@ -93,7 +96,8 @@ class Test01SingleParent(unittest.TestCase):
                 "id": 1
             }
         }
-        result = parent_child(self.es_db, self.parents, self.child_type, query)
+        result = main.parent_child(self.es_db, self.parents, self.child_type,
+                               query)
         for r in self.result:
             number_of_children = len(result[r]['child'])
 
@@ -175,7 +179,8 @@ class Test02MultipleParent(unittest.TestCase):
                                        doc_type=self.parent_type, id=1),
                         self.es_db.get(index=self.parent_index,
                                        doc_type=self.parent_type, id=2)]
-        self.result = parent_child(self.es_db, self.parents, self.child_type)
+        self.result = main.parent_child(self.es_db, self.parents,
+                                      self.child_type)
 
     def test01_keys(self):
         for r in self.result:
@@ -206,7 +211,8 @@ class Test02MultipleParent(unittest.TestCase):
                 "id": 1
             }
         }
-        result = parent_child(self.es_db, self.parents, self.child_type, query)
+        result = main.parent_child(self.es_db, self.parents, self.child_type,
+                               query)
         for r in self.result:
             number_of_children += len(result[r]['child'])
 

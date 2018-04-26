@@ -1,5 +1,4 @@
 from elasticsearch import NotFoundError
-import esgetfamily.tests.test_esgetfamily
 
 scroll_time = '5m'
 
