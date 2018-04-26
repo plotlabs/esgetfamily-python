@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='esgetfamily',
-      version='0.3',
+      version='0.4',
       description='Fetch Parent and Child documents in Elasticsearch',
       classifiers=[
           'Programming Language :: Python :: 2.7'
