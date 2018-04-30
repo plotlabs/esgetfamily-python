@@ -21,4 +21,3 @@ setup(name='esgetfamily',
       zip_safe=False,
       install_requires=['elasticsearch']
       )
-

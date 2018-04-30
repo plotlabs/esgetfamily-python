@@ -48,8 +48,9 @@ def get_child(es_db, parent_index, parent_type, parent_ids, child_type,
 
         if child['hits']['total'] == 0:
             return {}
-        else:
-            return result
+
+        return result
+
     except NotFoundError:
         return {}
 
